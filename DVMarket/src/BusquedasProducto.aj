@@ -8,13 +8,14 @@ import java.time.format.DateTimeFormatter;
 public aspect BusquedasProducto {
 	File file = new File("consultas.log");
 	
-	pointcut Cambios() : execution(* DVMarket.buscar*(..));
 	
-	after() : Cambios(){
+	pointcut Consultando() : execution(* DVMarket.buscar*(..));
+	
+	after() : Consultando(){
 		LocalDateTime tiempo = LocalDateTime.now();
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		String tp = tiempo.format(dateTimeFormatter);
-		String mensaje = "Eliminacion";
+		String mensaje = tp + thisJoinPoint.getSignature().getDeclaringType();
 		writeFile(mensaje);
 	}
 	
