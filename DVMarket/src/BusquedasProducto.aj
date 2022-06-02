@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import DVMarket.DVMarket;
 
 public aspect BusquedasProducto {
 	File file = new File("consultas.log");
